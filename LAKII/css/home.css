@@ -1,0 +1,138 @@
+body {
+  background-color: #3e3e3e;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #4a4a4a;
+  padding: 10px 0;
+  text-align: center;
+}
+header ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+header ul li {
+  margin: 0 15px;
+}
+
+header ul li a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 16px;
+}
+
+#products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.product {
+  --border-radius: 4rem;
+  --bg-color: #000000;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 300px;
+  height: 500px;
+  background: var(--bg-color);
+  border-radius: var(--border-radius);
+  color: #fff;
+  margin: 20px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.product::before,
+.product::after{
+  content:'';
+  position: absolute;
+}
+
+.product::before {
+  width: 200%;
+  height: 200%;
+  background-image: conic-gradient(var(--color) 0deg,
+          transparent 60deg, transparent 180deg, var(--color) 180deg,
+          transparent 240deg);
+  inset: -50%;
+  z-index: -2;
+  animation: borderanimation 9s linear infinite;
+}
+
+.product:hover::before {
+  animation-play-state: paused;
+}
+
+@keyframes borderanimation {
+  to {
+      transform: rotate(-360deg);
+  }
+}
+
+.product::after {
+  --inset: 4px;
+  background: #111;
+  inset: var(--inset);
+  border-radius: calc(var(--border-radius) - var(--inset));
+  z-index: -1;
+  transition: all 0.1s linear;
+}
+
+.product:hover::after {
+  background: var(--bg-color);
+}
+
+
+.product img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product h1 {
+  color: white;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.product p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.product button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor:progress;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.product button:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
